@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+    <property name="connection.driver_class">org.postgresql.Driver</property>
+      <mapping class="com.hots.model.Dataset"/>
+      <mapping class="com.hots.model.dictionary.Difficulty"/>
+      <mapping class="com.hots.model.dictionary.Franchise"/>
+      <mapping class="com.hots.model.dictionary.GameMode"/>
+      <mapping class="com.hots.model.Gaussian"/>
+      <mapping class="com.hots.model.Gaussianprobabilities"/>
+      <mapping class="com.hots.model.Hero"/>
+      <mapping class="com.hots.model.Heroclusters"/>
+      <mapping class="com.hots.model.Herodetails"/>
+      <mapping class="com.hots.model.dictionary.HeroGroup"/>
+      <mapping class="com.hots.model.dictionary.HeroSubgroup"/>
+      <mapping class="com.hots.model.dictionary.Map"/>
+      <mapping class="com.hots.model.Matchuptable"/>
+      <mapping class="com.hots.model.Network"/>
+      <mapping class="com.hots.model.dictionary.ResourceType"/>
+      <mapping class="com.hots.model.Statistic"/>
+      <mapping class="com.hots.model.Statisticheroes"/>
+      <mapping class="com.hots.model.Statisticheroesavg"/>
+      <mapping class="com.hots.model.Statisticheroesmax"/>
+      <mapping class="com.hots.model.Statisticheroesmin"/>
+      <mapping class="com.hots.model.Trainingmeta"/>
+      <mapping class="com.hots.model.Trainingstate"/>
+      <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>
