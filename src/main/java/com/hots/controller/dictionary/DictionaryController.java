@@ -20,12 +20,12 @@ import java.util.stream.Collectors;
 public class DictionaryController {
 
     @Autowired
-    ApplicationContext applicationContext;
+    Map<String,DictionaryService> dictionaryServiceMap;
 
     @GetMapping("/")
     Map<String,List<Dictionary>> findAll(){
         Map<String, List<Dictionary>> dictionaries =
-                applicationContext.getBeansOfType(DictionaryService.class)
+                dictionaryServiceMap
                         .entrySet()
                         .stream()
                         .collect(Collectors.toMap(

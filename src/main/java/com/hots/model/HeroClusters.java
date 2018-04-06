@@ -1,6 +1,7 @@
 package com.hots.model;
 
 import com.hots.model.Gaussian;
+import com.hots.model.dictionary.HeroSubgroup;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,11 +11,19 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-public class Heroclusters {
+@Table(name="heroclusters")
+public class HeroClusters {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Integer subgroupcluster;
+
+    @ManyToOne
+    @JoinColumn(name="subgroupcluster")
+    private HeroSubgroup subgroupcluster;
+
     private Integer cluster;
-    //private Gaussian gaussian;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private Gaussian gaussian;
  }

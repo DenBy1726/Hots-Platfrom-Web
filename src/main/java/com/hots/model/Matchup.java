@@ -1,5 +1,6 @@
 package com.hots.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,12 +10,22 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-public class Matchuptable {
+@Table(name = "matchuptable")
+public class Matchup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private int id;
+
     private Double winWith;
+
     private Double winAgainst;
-    private Integer heroId1;
-    private Integer heroId2;
+
+    @Column(name="hero_id1")
+    @JsonIgnore
+    private long first;
+
+    @Column(name="hero_id2")
+    @JsonIgnore
+    private long second;
 }

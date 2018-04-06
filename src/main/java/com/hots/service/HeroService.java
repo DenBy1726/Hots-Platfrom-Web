@@ -12,5 +12,5 @@ import java.util.List;
  * Created by Denis on 04.04.2018.
  */
 @Service
-public class HeroService extends ReadOnlyService<Hero, HeroRepository>{
+public class HeroService extends HeroAbstractService<Hero, HeroRepository>{
 }

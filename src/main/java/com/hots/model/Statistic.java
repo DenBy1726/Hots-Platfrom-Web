@@ -1,5 +1,6 @@
 package com.hots.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hots.model.dictionary.Map;
 import lombok.Data;
 
@@ -13,9 +14,18 @@ import javax.persistence.*;
 public class Statistic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private int id;
+
     private Integer matches;
+
     private Integer wins;
-    private Integer mapId;
-    private Integer heroId;
+
+    @ManyToOne
+    @JoinColumn(name="map_id")
+    private Map map;
+
+    @ManyToOne
+    @JoinColumn(name="hero_id")
+    private Hero hero;
 }

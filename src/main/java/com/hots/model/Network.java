@@ -1,5 +1,6 @@
 package com.hots.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,11 +11,24 @@ import javax.persistence.*;
 @Data
 @Entity
 public class Network {
-    private Long datasetId;
-    private Long stateId;
-    private Long metaId;
+
+    @ManyToOne
+    @JoinColumn(name="dataset_id")
+    private Dataset dataset;
+
+    @ManyToOne
+    @JoinColumn(name="state_id")
+    private TrainingState stateId;
+
+    @ManyToOne
+    @JoinColumn(name="meta_id")
+    private TrainingMeta metaId;
+
+    @JsonIgnore
     private String data;
+
     private Boolean isbest;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

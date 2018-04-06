@@ -1,10 +1,8 @@
 package com.hots.model;
 
-import com.hots.model.Gaussianprobabilities;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -16,8 +14,13 @@ public class Gaussian {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private Integer cluster;
-  //  private List<Gaussianprobabilities> probability;
+
+    @OneToMany
+    @JoinColumn(name="gaussian_id")
+    private List<GaussianProbabilities> probability;
+
     private Double loglikelihoods;
 
 }

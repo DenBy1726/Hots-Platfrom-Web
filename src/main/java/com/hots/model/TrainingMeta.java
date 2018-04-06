@@ -1,5 +1,6 @@
 package com.hots.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,12 +11,19 @@ import java.util.Collection;
  */
 @Data
 @Entity
-public class Trainingmeta {
+@Table(name="trainingmeta")
+public class TrainingMeta {
+
     private String name;
+
     private String clusterpath;
+
     private String alias;
+
     private String description;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private long id;
 }
