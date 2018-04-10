@@ -1,12 +1,10 @@
 package com.hots.repository;
 
 import com.hots.model.Network;
-import com.hots.model.Statistic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import sun.nio.ch.Net;
 
 import java.util.List;
 

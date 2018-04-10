@@ -18,11 +18,11 @@ public class Network {
 
     @ManyToOne
     @JoinColumn(name="state_id")
-    private TrainingState stateId;
+    private TrainingState state;
 
     @ManyToOne
     @JoinColumn(name="meta_id")
-    private TrainingMeta metaId;
+    private TrainingMeta meta;
 
     @JsonIgnore
     private String data;
