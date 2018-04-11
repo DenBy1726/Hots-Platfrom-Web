@@ -2,6 +2,7 @@ package com.hots.controller;
 
 import com.hots.model.dictionary.Dictionary;
 import com.hots.service.HeroAbstractService;
+import com.hots.service.HeroFullService;
 import com.hots.service.dictionary.DictionaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,29 +22,15 @@ import java.util.stream.Collectors;
 public class HeroFullController {
 
     @Autowired
-    Map<String,HeroAbstractService> heroAbstractServiceMap;
+    HeroFullService heroFullService;
 
     @GetMapping("/")
     Map<String,List<Object>> findAll(){
-        Map<String, List<Object>> dictionaries =
-                heroAbstractServiceMap
-                        .entrySet()
-                        .stream()
-                        .collect(Collectors.toMap(
-                                e -> e.getKey().replace("Service", ""),
-                                e -> e.getValue().findAll()));
-        return dictionaries;
+        return heroFullService.findAll();
     }
 
     @GetMapping("/{id}")
     Map<String,Object> findOne(@PathVariable Long id){
-        Map<String, Object> dictionaries =
-                heroAbstractServiceMap
-                        .entrySet()
-                        .stream()
-                        .collect(Collectors.toMap(
-                                e -> e.getKey().replace("AbstractService", ""),
-                                e -> e.getValue().findById(id)));
-        return dictionaries;
+        return heroFullService.findbyId(id);
     }
 }

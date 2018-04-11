@@ -54,12 +54,6 @@ public class HeroDetails {
 
     private Integer attackdamage;
 
-    private String imageurl;
-
-    private String iconurl;
-
-    private String detailsurl;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
