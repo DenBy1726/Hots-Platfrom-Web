@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+
+google:
+        client:
+                         clientId: 1073891310566-k7dnmg0p2m74n5vn1opbcf608u50j727.apps.googleusercontent.com
+                         clientSecret: HRShfSLPmnSWcWs7IUUZMIgt
+                         accessTokenUri: https://www.googleapis.com/oauth2/v3/token
+                         userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+                         tokenName: oauth_token
+                         authenticationScheme: query
+                         clientAuthenticationScheme: form
+                         scope: profile
+
+        resource:
+                 userInfoUri: https://www.googleapis.com/userinfo/v2/me
+                 preferTokenInfo: false

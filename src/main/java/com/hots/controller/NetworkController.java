@@ -20,7 +20,7 @@ import java.util.List;
  * Created by Denis on 04.04.2018.
  */
 @RestController
-@RequestMapping("/api/v1/public/network")
+@RequestMapping("/api/v1/private/network")
 public class NetworkController {
 
     @Autowired

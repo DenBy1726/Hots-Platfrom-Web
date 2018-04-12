@@ -27,7 +27,7 @@ import java.util.List;
  * Created by Denis on 04.04.2018.
  */
 @RestController
-@RequestMapping("/api/v1/public/dataset")
+@RequestMapping("/api/v1/private/dataset")
 public class DatasetController {
 
     @Autowired
