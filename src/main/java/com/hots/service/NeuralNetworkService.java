@@ -2,13 +2,8 @@ package com.hots.service;
 
 import Catalano.Neuro.ActivationNetwork;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hots.controller.HeroController;
-import com.hots.controller.HeroFullController;
 import com.hots.model.Network;
-import com.hots.model.TrainingMeta;
-import com.hots.model.dictionary.Dictionary;
 import com.hots.model.networkDTO.Root;
-import com.hots.repository.HeroRepository;
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

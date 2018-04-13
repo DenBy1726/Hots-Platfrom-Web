@@ -1,21 +1,47 @@
 spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: postgres
-
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: postgres
+        password: postgres
+server:
+    port: 8443
+    ssl:
+        key-store: keystore.p12
+        key-store-password: mypassword
+        keyStoreType: PKCS12
+        keyAlias: tomcat
 google:
-        client:
-                         clientId: 1073891310566-k7dnmg0p2m74n5vn1opbcf608u50j727.apps.googleusercontent.com
-                         clientSecret: HRShfSLPmnSWcWs7IUUZMIgt
-                         accessTokenUri: https://www.googleapis.com/oauth2/v3/token
-                         userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
-                         tokenName: oauth_token
-                         authenticationScheme: query
-                         clientAuthenticationScheme: form
-                         scope: profile
-
-        resource:
-                 userInfoUri: https://www.googleapis.com/userinfo/v2/me
-                 preferTokenInfo: false
+    client:
+        clientId: 1073891310566-k7dnmg0p2m74n5vn1opbcf608u50j727.apps.googleusercontent.com
+        clientSecret: HRShfSLPmnSWcWs7IUUZMIgt
+        accessTokenUri: https://www.googleapis.com/oauth2/v3/token
+        userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+        tokenName: oauth_token
+        authenticationScheme: query
+        clientAuthenticationScheme: form
+        scope: profile
+    resource:
+        userInfoUri: https://www.googleapis.com/userinfo/v2/me
+        preferTokenInfo: false
+facebook:
+    client:
+        clientId: 242464786324885
+        clientSecret: 14d8ef067af965fcc706c737d796b9e1
+        accessTokenUri: https://graph.facebook.com/oauth/access_token
+        userAuthorizationUri: https://www.facebook.com/dialog/oauth
+        tokenName: oauth_token
+        authenticationScheme: query
+        clientAuthenticationScheme: form
+        scope: public_profile
+    resource:
+        userInfoUri: https://graph.facebook.com/me
+github:
+    client:
+        clientId: e675fe2cfac714227c95
+        clientSecret: 3373499694986deea5db8e5af061c4664ffefef1
+        accessTokenUri: https://github.com/login/oauth/access_token
+        userAuthorizationUri: https://github.com/login/oauth/authorize
+        clientAuthentificationScheme: form
+    resource:
+        userInfoUri: https://api.github.com/user
