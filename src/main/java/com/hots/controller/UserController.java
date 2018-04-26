@@ -16,10 +16,12 @@ import java.security.Principal;
 public class UserController {
     @RequestMapping("/user")
     public Object user() {
-        OAuth2Authentication auth = (OAuth2Authentication)SecurityContextHolder.getContext().getAuthentication();
-        if(auth == null)
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth instanceof OAuth2Authentication){
+            return ((OAuth2Authentication)auth).getUserAuthentication().getDetails();
+        }
+        else{
             return null;
-        else
-            return auth.getUserAuthentication().getDetails();
+        }
     }
 }

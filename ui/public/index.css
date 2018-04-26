@@ -1,0 +1,31 @@
+body {
+    color: rgba(255, 247, 247, 0.88) !important;
+}
+
+.hotsButton {
+    margin: 3px;
+    padding: 6px 12px !important;
+    border: 1px solid #9393f5;
+    color: #fff !important;
+    border-radius: 1px !important;
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(32, 12, 59, 0.9), #64419d, rgba(32, 12, 59, 0.9));
+    font-size: .9em;
+    font-weight: 300;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.hotsButton:active{
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(22, 12, 48, 0.9), #603590, rgba(22, 12, 48, 0.9));
+}
+
+.hotsAvatar{
+    background: rgba(0,0,0,0) !important;
+    color: #64419d !important;
+    cursor: pointer !important;
+}
+
+.hotsAvatar:active{
+    color: #603590 !important;
+}

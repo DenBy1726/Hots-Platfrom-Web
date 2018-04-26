@@ -13,41 +13,53 @@ module.exports = {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
     },
-    module : {
-        loaders : [
-            {
-                test : /\.jsx?/,
-                include : path.resolve(__dirname, 'src'),
-                loader : 'babel-loader'
-            }
-        ]
-    },
     devServer: {
         contentBase: path.resolve(__dirname, './public/'),
         inline: true,
         port: 3000,
-        stats: {
-            warnings: false,
-        }
+        proxy: {
+            '/auth/**': {
+                target: { host: 'localhost', port: 8080, protocol: 'https:' },
+                secure: true
+            },
+            '/api/**': {
+                target: { host: 'localhost', port: 8080, protocol: 'https:' },
+                secure: true
+            }
+        },
     },
-
-    devtool: 'eval',
+    module:{
+        rules:[   //загрузчик для jsx
+            {
+                test: /\.jsx?$/,
+                exclude: /(node_modules)/,  // исключаем из обработки папку node_modules
+                loader: "babel-loader",   // определяем загрузчик
+                options:{
+                    presets:["es2015","stage-0","react"],    // используемые плагины
+                    plugins: [
+                        "transform-decorators-legacy","transform-async-to-generator","transform-class-properties",["babel-plugin-transform-runtime",  {
+                            "helpers": false,
+                            "polyfill": false,
+                            "regenerator": true,
+                            "moduleName": "babel-runtime"
+                        }],
+                        ['import', { libraryName: "antd", style: true }]
+                    ],
+                },
+            },
+            { test: /\.css$/, loader: "style-loader!css-loader" },
+            { test: /\.less$/, use: [
+                {loader: "style-loader"},
+                {loader: "css-loader"},
+                {loader: "less-loader"}
+            ]
+            }
+        ]
+    },
+    devtool: 'eval-source-map',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            warnings: false,
-            mangle: false
-        }),
-        new OptimizeCssAssetsPlugin({
-            assetNameRegExp: /\.optimize\.css$/g,
-            cssProcessor: require('cssnano'),
-            cssProcessorOptions: {discardComments: {removeAll: true}},
-            canPrint: true
-        }),
         devFlagPlugin,
-        new ExtractTextPlugin('index.css')
     ],
 
 };
