@@ -15,5 +15,5 @@ public class UserDetails {
     private long id;
     private String name;
     private String principal;
-
+    private String image;
 }

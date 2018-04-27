@@ -38,3 +38,8 @@ How to configure oauth2:
           userInfoUri: https://www.googleapis.com/userinfo/v2/me
           preferTokenInfo: false
 ````
+How to build and run server
+````
+gradle build
+java -jar build\libs\hots_server-1.0.0.jar
+````

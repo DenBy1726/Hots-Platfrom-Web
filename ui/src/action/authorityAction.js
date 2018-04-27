@@ -8,9 +8,17 @@ import {LOAD_START_AUTH, LOAD_END_AUTH, LOAD_ERROR_AUTH} from "../constants/Acti
 export const getUser = () => {
     return dispatch => {
         dispatch(loadStartAction());
-        axios.get("/auth/user").then(
+        axios({
+            method: "get",
+            url: "/auth/user",
+            withCredentials: true,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials":"true"
+            },
+        }).then(
             result => {
-                dispatch(loadEndAction(result));
+                dispatch(loadEndAction(result.data));
             },
             error => {
                 dispatch(loadErrorAction());

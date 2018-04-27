@@ -16,8 +16,10 @@ export default function authorityReducer(state = {...initialState}, action) {
         case LOAD_END_AUTH:
             if (action.payload === null || action.payload === undefined)
                 return {...state};
-            else
+            else {
+                action.payload.role = action.payload.role.map(x => x.name);
                 return {...state, ...action.payload};
+            }
         case LOAD_ERROR_AUTH:
             return {...state};
         default:

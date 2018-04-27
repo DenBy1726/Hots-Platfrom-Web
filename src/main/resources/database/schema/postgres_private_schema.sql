@@ -8,7 +8,8 @@ CREATE TABLE user_details
 (
   id INTEGER DEFAULT nextval('user_details_id_seq'::regclass) PRIMARY KEY NOT NULL,
   name VARCHAR(100),
-  principal VARCHAR(100)
+  principal VARCHAR(100),
+  image VARCHAR(1024)
 );
 
 CREATE TABLE user_role

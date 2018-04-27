@@ -1,5 +1,6 @@
 package com.hots.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hots.model.auth.Role;
 import com.hots.model.auth.User;
 import com.hots.model.auth.UserDetails;
@@ -38,6 +39,9 @@ public class RESTAuthenticationSuccessHandler  extends SimpleUrlAuthenticationSu
     private UserService userService;
 
     @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
     @Qualifier("authenticationManager")
     AuthenticationManager authenticationManager;
 
@@ -57,14 +61,10 @@ public class RESTAuthenticationSuccessHandler  extends SimpleUrlAuthenticationSu
                 user = userService.persistFacebookUser(auth);
                 break;
         }
-        User finalUser = user;
-        ((OAuth2Authentication) authentication).setDetails(
-                new HashMap<String,Object>(){{
-                    put("principal", finalUser.getDetails().getPrincipal());
-                    put("name", finalUser.getDetails().getName());
-                    put("id", finalUser.getId());
-                    put("role", finalUser.getRole());
-                }});
+        user.getDetails().setId(user.getId());
+        Map<String, Object> map = objectMapper.convertValue(user.getDetails(), Map.class);
+        map.put("role",user.getRole());
+        ((OAuth2Authentication) authentication).setDetails(map);
         Authentication customAuth =
                 new OAuth2Authentication(
                         ((OAuth2Authentication) authentication).getOAuth2Request(),

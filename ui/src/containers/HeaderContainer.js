@@ -8,6 +8,7 @@ import {bindActionCreators, compose} from "redux";
 import * as authorityAction from "../action/authorityAction"
 import globalHistory from "../util/browserHistory";
 import {withRouter} from "react-router-dom";
+import axios from "axios";
 
 class HeaderContainer extends Component{
 
@@ -19,14 +20,6 @@ class HeaderContainer extends Component{
         this.props.history.push('');
     };
 
-    onLogoutClick = ()=>{
-        this.props.history.push(`/auth/logout`);
-    };
-
-    onLoginClick = (server)=>{
-        this.props.history.push(`/auth/login/${server}`);
-    };
-
     render(){
         const {authority} = this.props;
         return <AppHeader
@@ -34,8 +27,6 @@ class HeaderContainer extends Component{
             isAuthentificated={authority.role.filter(x=>x!== "ANONYMOUS").length !== 0}
             userImage={authority.image}
             onTitleClick={this.onTitleClick}
-            onLogoutClick={this.onLogoutClick}
-            onLoginClick={this.onLoginClick}
         />
     }
 }

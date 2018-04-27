@@ -9,7 +9,7 @@ import LoginDetails from "./LoginDetails";
 export default class AppHeader extends Component {
     render() {
         const {
-            userName, userImage, titleImage, isAuthentificated, onLogoutClick, onLoginClick,
+            userName, userImage, titleImage, isAuthentificated,
             onTitleClick
         } = this.props;
         const detailsStyle = {margin: "0px 20px 0px auto", display: "flex",alignItems: "center" };
@@ -24,11 +24,11 @@ export default class AppHeader extends Component {
                     ?
                     <div style={detailsStyle}>
                         <UserDetails name={userName} avatar={userImage}/>
-                        <button  className="hotsButton" onClick={onLogoutClick}>Выйти</button>
+                        <button  className="hotsButton" onClick={()=>window.location="/auth/logout"}>Выйти</button>
                     </div>
                     :
                     <div style={detailsStyle}>
-                        <LoginDetails onClick={onLoginClick}/>
+                        <LoginDetails/>
                     </div>
             }
         </div>
@@ -40,8 +40,6 @@ AppHeader.propTypes = {
     userImage: propTypes.string.isRequired,
     titleImage: propTypes.string.isRequired,
     isAuthentificated: propTypes.bool.isRequired,
-    onLogoutClick: propTypes.func.isRequired,
-    onLoginClick: propTypes.func.isRequired,
     onTitleClick: propTypes.func.isRequired
 };
 
@@ -50,10 +48,6 @@ AppHeader.defaultProps = {
     userImage: "DefaultAvatar.png",
     titleImage: "TitleLogo.png",
     isAuthentificated: false,
-    onLogoutClick: () => {
-    },
-    onLoginClick: (server) => {
-    },
     onTitleClick: () => {
     },
 };

@@ -14,7 +14,7 @@ export default class LoginDetails extends Component{
             </span>
             {
                 servers.map(x=>{
-                    return <div onClick={()=> this.props.onClick(x)}>
+                    return <div onClick={()=>window.location=`auth/login/${x}`}>
                         <Avatar icon={x} className="hotsAvatar"/>
                     </div>
                 })
@@ -22,7 +22,3 @@ export default class LoginDetails extends Component{
         </div>
     }
 }
-
-LoginDetails.propTypes = {
-    onClick: propTypes.func.isRequired
-};

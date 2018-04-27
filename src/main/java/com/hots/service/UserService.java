@@ -36,9 +36,10 @@ public class UserService {
     public User persistGitUser(Authentication authentication) {
         LinkedHashMap details = (LinkedHashMap)authentication.getDetails();
         String id =  details.get("id").toString();
-        User found = userRepository.findUserByGithubId(id);
-        if (found != null)
-            return found;
+        User user = userRepository.findUserByGithubId(id);
+        if (user == null)
+            user = new User();
+
         String principal = authentication.getPrincipal().toString();
         Set<Role> roles = new HashSet<>();
         for (GrantedAuthority role : authentication.getAuthorities()) {
@@ -48,22 +49,23 @@ public class UserService {
         UserDetails userDetails = new UserDetails();
 
         userDetails.setName((String) details.get("name"));
+        userDetails.setImage((String)details.get("avatar_url"));
         userDetails.setPrincipal(principal);
-        User user = new User();
         user.setGithubId(id);
         user.setDetails(userDetails);
         user.setRole(roles);
-        return userRepository.save(user);
 
+        return userRepository.save(user);
     }
 
     @Transactional
     public User persistGoogleUser(Authentication authentication){
         LinkedHashMap details = (LinkedHashMap)authentication.getDetails();
         String id = details.get("id").toString();
-        User found = userRepository.findUserByGoogleId(id);
-        if (found != null)
-            return found;
+        User user = userRepository.findUserByGoogleId(id);
+        if (user == null)
+            user = new User();
+
         String principal = authentication.getPrincipal().toString();
         Set<Role> roles = new HashSet<>();
         for (GrantedAuthority role : authentication.getAuthorities()) {
@@ -73,8 +75,8 @@ public class UserService {
         UserDetails userDetails = new UserDetails();
 
         userDetails.setName((String) details.get("name"));
+        userDetails.setImage((String)details.get("picture"));
         userDetails.setPrincipal(principal);
-        User user = new User();
         user.setGoogleId(id);
         user.setDetails(userDetails);
         user.setRole(roles);
@@ -85,9 +87,9 @@ public class UserService {
     public User persistFacebookUser(Authentication authentication){
         LinkedHashMap details = (LinkedHashMap)authentication.getDetails();
         String id = details.get("id").toString();
-        User found = userRepository.findUserByFacebookId(id);
-        if (found != null)
-            return found;
+        User user = userRepository.findUserByFacebookId(id);
+        if (user == null)
+            user = new User();
         String principal = authentication.getPrincipal().toString();
         Set<Role> roles = new HashSet<>();
         for (GrantedAuthority role : authentication.getAuthorities()) {
@@ -97,8 +99,9 @@ public class UserService {
         UserDetails userDetails = new UserDetails();
 
         userDetails.setName((String) details.get("name"));
+        userDetails.setImage("https://graph.facebook.com/v2.12/" + id + "/picture?access_token");
         userDetails.setPrincipal(principal);
-        User user = new User();
+
         user.setFacebookId(id);
         user.setDetails(userDetails);
         user.setRole(roles);

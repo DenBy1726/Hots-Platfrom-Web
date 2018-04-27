@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -28,6 +30,7 @@ import java.util.List;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @EnableOAuth2Client
+@Order(200)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -73,7 +76,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .authenticated();
         http
                 .logout()
-                .logoutUrl("/auth/logout");
+                .logoutUrl("/auth/logout")
+                .logoutSuccessUrl("/");
     }
 
     private Filter ssoFilter() {
