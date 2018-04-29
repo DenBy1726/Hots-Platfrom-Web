@@ -12,7 +12,9 @@ module.exports = {
     ],
     output: {
         path: path.join(__dirname, 'public'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/',
+
     },
     resolve: {
         modules: ["node_modules"],
@@ -23,6 +25,7 @@ module.exports = {
         inline: true,
         port: 3000,
         hot: true,
+        historyApiFallback: true,
         compress: true,
         proxy: {
             '/auth/**': {

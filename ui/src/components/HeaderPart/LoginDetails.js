@@ -14,7 +14,7 @@ export default class LoginDetails extends Component{
             </span>
             {
                 servers.map(x=>{
-                    return <div onClick={()=>window.location=`auth/login/${x}`}>
+                    return <div onClick={()=>window.location=`/auth/login/${x}`}>
                         <Avatar icon={x} className="hotsAvatar"/>
                     </div>
                 })

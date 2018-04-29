@@ -6,46 +6,24 @@ import AppHeader from "../components/AppHeader"
 import {connect} from "react-redux";
 import {bindActionCreators, compose} from "redux";
 import * as authorityAction from "../action/authorityAction"
-import globalHistory from "../util/browserHistory";
 import {withRouter} from "react-router-dom";
-import axios from "axios";
+import * as ROUTES from "../constants/Routes";
 
-class HeaderContainer extends Component{
+class Header extends Component {
 
-    componentDidMount(){
-        this.props.authorityAction.getUser();
-    }
-
-    onTitleClick = ()=>{
-        this.props.history.push('');
-    };
-
-    render(){
-        const {authority} = this.props;
+    render() {
+        const {authority,menuVisible,onHeaderMenuClick,isAuthenticated} = this.props;
         return <AppHeader
             userName={authority.name}
-            isAuthentificated={authority.role.filter(x=>x!== "ANONYMOUS").length !== 0}
+            isAuthenticated={isAuthenticated}
             userImage={authority.image}
-            onTitleClick={this.onTitleClick}
+            onLogoutClick={() => window.location = ROUTES.LOGOUT}
+            onTitleClick={() => this.props.history.push(ROUTES.WELCOME)}
+            onHeaderMenuClick={onHeaderMenuClick}
+            menuVisible={menuVisible}
         />
     }
 }
 
 
-
-function mapStateToProps(state) {
-    return {
-        authority: state.authority,
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        authorityAction: bindActionCreators(authorityAction, dispatch),
-    };
-}
-
-export default compose(
-    withRouter,
-    connect(mapStateToProps, mapDispatchToProps)
-)(HeaderContainer);
+export default withRouter(Header);
