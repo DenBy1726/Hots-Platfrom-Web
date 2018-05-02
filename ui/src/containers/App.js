@@ -12,6 +12,7 @@ import {bindActionCreators, compose} from "redux";
 import {connect} from "react-redux";
 import AppMenu from "../components/MenuPart/AppMenu";
 import MenuWrapper from "../components/MenuPart/MenuWrapper";
+import MainRouter from "./MainRouter";
 
 class App extends Component {
 
@@ -19,33 +20,9 @@ class App extends Component {
         this.props.authorityAction.getUser();
     }
 
-    state = {
-        menuVisible: false,
-    };
-
-    handleMenuClick = () => {
-        let result = !this.state.menuVisible;
-        this.setState({...this.state, menuVisible: result});
-    };
-
-
     render() {
-        const isAuthenticated = this.props.authority.role.filter(x => x !== "ANONYMOUS").length !== 0;
         return <Switch>
-            <Route path={ROUTES.MAIN}>
-                <div style={{display: "flex", flexDirection: "column"}}>
-                    <HeaderContainer
-                        onHeaderMenuClick={this.handleMenuClick}
-                        menuVisible={this.state.menuVisible}
-                        authority={this.props.authority}
-                        isAuthenticated={isAuthenticated}
-                    />
-                    <div style={{display:"flex", flexDirection:"row"}}>
-                        <MenuWrapper visible={this.state.menuVisible} isAuthenticated={isAuthenticated}/>
-                        <MainContainer/>
-                    </div>
-                </div>
-            </Route>
+            <Route path={ROUTES.MAIN} component={MainRouter}/>
             <Route path={ROUTES.WELCOME} exact component={WelcomeContainer}/>
         </Switch>
     }

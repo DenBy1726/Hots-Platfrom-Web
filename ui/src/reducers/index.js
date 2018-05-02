@@ -3,9 +3,11 @@
  */
 import {combineReducers} from 'redux';
 import authority from "./authorityReducer"
+import heroes from "./heroReducer"
+import dictionary from "./dictionaryReducer"
 
 const appReducer = combineReducers({
-    authority
+    authority,heroes,dictionary
 });
 
 export default (state, action) => {
