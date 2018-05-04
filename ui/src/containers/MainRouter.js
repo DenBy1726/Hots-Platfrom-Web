@@ -4,19 +4,24 @@
 import React, {Component} from "react";
 import HeaderContainer from "./HeaderContainer";
 import {Route, Switch, withRouter} from "react-router-dom";
-import WelcomeContainer from "./WelcomeContainer";
 import * as ROUTES from "../constants/Routes";
 import MainContainer from "./MainContainer";
-import * as authorityAction from "../action/authorityAction"
 import {bindActionCreators, compose} from "redux";
+import * as heroActions from "../action/heroAction";
+import * as dictionaryActions from "../action/dictionaryAction"
 import {connect} from "react-redux";
-import AppMenu from "../components/MenuPart/AppMenu";
 import MenuWrapper from "../components/MenuPart/MenuWrapper";
+import HeroContainer from "./HeroContainer";
 class MainRouter extends Component {
 
     state = {
         menuVisible: false,
     };
+
+    componentDidMount(){
+        this.props.heroActions.getAllHeroesData();
+        this.props.dictionaryActions.getDictionary();
+    }
 
     handleMenuClick = () => {
         let result = !this.state.menuVisible;
@@ -33,11 +38,16 @@ class MainRouter extends Component {
                 isAuthenticated={isAuthenticated}
             />
             <div style={{display: "flex", flexDirection: "row"}}>
-                <MenuWrapper visible={this.state.menuVisible} isAuthenticated={isAuthenticated}/>
+                <MenuWrapper path={this.props.history.pathname} visible={this.state.menuVisible} isAuthenticated={isAuthenticated}/>
                 <Switch>
                     <Route exact path={ROUTES.MAIN}>
                         <div style={{margin: "10px auto"}}>
                             <MainContainer/>
+                        </div>
+                    </Route>
+                    <Route exact path={`${ROUTES.HEROES}/:name?`}>
+                        <div style={{width:"100%"}}>
+                            <HeroContainer/>
                         </div>
                     </Route>
                 </Switch>
@@ -53,7 +63,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        heroActions: bindActionCreators(heroActions,dispatch),
+        dictionaryActions: bindActionCreators(dictionaryActions,dispatch)
+    }
 };
 
 export default compose(

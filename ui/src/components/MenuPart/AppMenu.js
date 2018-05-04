@@ -52,7 +52,7 @@ export default class AppMenu extends Component {
                 <Menu
                     style={menuItemStyle}
                     theme={menuTheme}
-                    defaultSelectedKeys={[selectedItem]}
+                    selectedKeys={[selectedItem]}
                     mode={menuMode}
                     onClick={onClick}
                 >

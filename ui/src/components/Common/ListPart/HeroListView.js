@@ -18,16 +18,18 @@ export default class HeroListView extends Component {
     };
 
     render() {
-        const {grid, data, onClick,loading} = this.props;
+        const {grid, data, onClick, loading, title, subtitle,onSubmitClick} = this.props;
         let halfWayThough = Math.floor(data.length / 2);
         let arrayFirstHalf = data.slice(0, halfWayThough);
         let arraySecondHalf = data.slice(halfWayThough, data.length);
+        let halfStyles = this.state.portrait === "" ? null : {marginTop: "70px"};
         return <div style={{display: "flex", justifyContent: "space-between"}}>
-            <div className="leftHalfOfList">
+            <div className="leftHalfOfList" style={halfStyles}>
                 <HeroList loading={loading} onClick={this.changePortrait} grid={grid} data={arrayFirstHalf}/>
             </div>
-            <PortraitPreview portrait={this.state.portrait}/>
-            <div className="rightHalfOfList">
+            {this.state.portrait !== "" ?
+                <PortraitPreview onClick={onSubmitClick} title={title} subtitle={subtitle} portrait={this.state.portrait}/> : null}
+            <div className="rightHalfOfList" style={halfStyles}>
                 <HeroList loading={loading} onClick={this.changePortrait} grid={grid} data={arraySecondHalf}/>
             </div>
         </div>
@@ -41,4 +43,5 @@ HeroList.propTypes = {
     onClick: propTypes.func.isRequired,
     pickedStyle: propTypes.object.isRequired,
     defaultStyle: propTypes.object.isRequired,
+    onSubmitClick: propTypes.func.isRequired
 };

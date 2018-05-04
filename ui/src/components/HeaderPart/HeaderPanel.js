@@ -86,7 +86,7 @@ HeaderPanel.defaultProps = {
     menuIconFold: 'menu-fold',
     menuIconUnfold: 'menu-unfold',
     menuVisible: false,
-    titleContainerStyle: {marginLeft: "auto"},
+    titleContainerStyle: {},
     titleHeight: "86px",
     titleStyle: {},
     titleWidth: "180px",

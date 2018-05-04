@@ -5,6 +5,7 @@ import React, {Component} from "react"
 import AppMenu from "./AppMenu";
 import * as ROUTES from "../../constants/Routes";
 import {withRouter} from "react-router-dom";
+import importToArray from "import-to-array";
 
 class MenuWrapper extends Component {
 
@@ -18,6 +19,10 @@ class MenuWrapper extends Component {
 
     render() {
         const {visible, isAuthenticated} = this.props;
+        const test = importToArray(ROUTES);
+        const selected = test
+            .filter(x => this.props.history.location.pathname.includes(x))
+            .reduce((max, n) => n.length > max.length ? n : max);
         return visible === true ?
             <AppMenu
                 menu={
@@ -79,7 +84,7 @@ class MenuWrapper extends Component {
                 menuItemStyle={{background: "rgba(0,0,0,0)"}}
                 menuContainerStyle={{width: 0, minHeight: '100vh'}}
                 siderClass="appMenu"
-                selectedItem={this.props.history.location.pathname.slice(1)}
+                selectedItem={selected}
                 onClick={(item) => {
                     this.props.history.push(item.key);
                 }}

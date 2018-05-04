@@ -23,6 +23,20 @@ body {
     background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #412364, rgba(29, 14, 41, 0.9), #311364);
 }
 
+.hotsInput {
+    background-color: transparent !important;
+    color: white !important;
+}
+
+.hotsInput:hover {
+    border: 1px solid #7c7ff5 !important;
+}
+
+.hotsInput:focus {
+    border: 1px solid #7c7ff5 !important;
+    box-shadow: 0 0 10px 2px rgb(69, 56, 255) !important;
+}
+
 .hotsAvatar {
     background: rgba(0, 0, 0, 0) !important;
     color: rgba(255, 247, 247, 0.88) !important;
@@ -85,10 +99,11 @@ html body div#app div div div.ant-layout.ant-layout-has-sider {
     display: flex !important;
     flex-wrap: wrap !important;
     justify-content: flex-end !important;
-
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
-.rightHalfOfList .ant-avatar-image{
+.rightHalfOfList .ant-avatar-image {
     float: right;
 }
 
@@ -96,4 +111,23 @@ html body div#app div div div.ant-layout.ant-layout-has-sider {
     display: flex !important;
     flex-wrap: wrap !important;
     justify-content: flex-start !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.simpleList:hover{
+    box-shadow: 0 0 15px 2px rgb(69, 56, 255);
+    background-color: rgba(69, 56, 255,0.5);
+}
+
+.simpleList{
+    cursor:pointer
+}
+
+.ant-popover-inner {
+    background-color: rgba(0,0,0,0.65) !important;
+}
+
+.ant-popover-title, .ant-popover-inner-content{
+    color: rgba(240, 232, 232, 0.88) !important;
 }
