@@ -10,13 +10,14 @@ import {bindActionCreators, compose} from "redux";
 import {withRouter} from "react-router-dom";
 import innerJoin from "../util/innerJoin";
 import FetchingWrapper from "../hoc/FetchingWrapper";
-import HeroListView from "../components/Common/ListPart/HeroListView";
+import HeroListView from "../components/ListPart/HeroListView";
+import {Checkbox} from "antd";
 
 
 class MainContainer extends Component {
 
     state = {
-        picked: {}
+        picked: {},
     };
 
     componentDidMount() {
@@ -31,25 +32,26 @@ class MainContainer extends Component {
     };
 
     render() {
-        const {heroes, dictionary, loading} = this.props;
+        const {heroes, dictionary, loading,liteMode} = this.props;
         const {picked} = this.state;
         return <FetchingWrapper style={{maxWidth: "814px"}} loading={loading} spinning={true}
                                 blur="2px">
-                    <HeroListView
-                        dictionary={{
-                            franchise: dictionary.franchise,
-                            group: dictionary.heroGroup
-                        }}
-                        loading={heroes.loading}
-                        picked={picked}
-                        title={picked !== undefined ? picked.name : undefined}
-                        subtitle={picked !== undefined ? picked.title : undefined}
-                        data={heroes.map(x => {
-                            return x.id === this.state.picked.id ? {...x, picked: true} : {...x};
-                        })}
-                        onClick={this.heroPicked}
-                        onSubmitClick={this.handleSubmit}
-                    />
+                <HeroListView
+                    dictionary={{
+                        franchise: dictionary.franchise,
+                        group: dictionary.heroGroup
+                    }}
+                    loading={heroes.loading}
+                    picked={picked}
+                    title={picked !== undefined ? picked.name : undefined}
+                    subtitle={picked !== undefined ? picked.title : undefined}
+                    data={heroes.map(x => {
+                        return x.id === this.state.picked.id ? {...x, picked: true} : {...x};
+                    })}
+                    onClick={this.heroPicked}
+                    onSubmitClick={this.handleSubmit}
+                    mode={liteMode ? "video" : "fetched"}
+                />
         </FetchingWrapper>
     }
 }
@@ -59,14 +61,14 @@ function mapStateToProps(state) {
     return {
         authority: state.authority,
         dictionary: state.dictionary,
+        liteMode: state.settings.liteMode,
         heroes,
         loading: state.heroes.loading
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-    }
+    return {}
 }
 
 export default compose(

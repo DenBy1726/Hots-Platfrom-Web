@@ -3,7 +3,7 @@
  */
 import React, {Component} from "react"
 import HeroListView from "./HeroListView";
-import Filter from "../Filter";
+import Filter from "../Common/Filter";
 
 export default class HeroFilteredList extends Component {
 

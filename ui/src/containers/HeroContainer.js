@@ -10,6 +10,7 @@ import {bindActionCreators, compose} from "redux";
 import {withRouter} from "react-router-dom";
 import * as heroActions from "../action/heroAction";
 import * as dictionaryActions from "../action/dictionaryAction"
+import * as matchupActions from "../action/matchupAction";
 import joinAllHeroesData from "../selectors/joinAllHeroesData"
 import SimpleList from "../components/Common/SimpleList";
 import HeroDataView from "../components/HeroDataView";
@@ -26,19 +27,34 @@ class HeroContainer extends Component {
         this.setState({...this.state, heroListVisible: !this.state.heroListVisible});
     };
 
-    handleFilterChange = (filter) => {
+    handleFilterChange = filter => {
         this.setState({...this.state, filter: filter.target.value})
     };
 
-    handlePick = (hero) => {
+    handlePick = hero => {
         this.props.history.push(`/Main/Heroes/${hero.name}`);
+    };
+
+    handleMatchupLoad = id => {
+        this.props.matchupActions.getHeroMatchup(id);
     };
 
     render() {
         const heroName = this.props.match.params.name;
-        const {heroes, loading} = this.props;
+        const {heroes, loading, matchupData} = this.props;
         const hero = heroes.filter(x => x.name === heroName);
         const listWidth = this.state.heroListVisible ? "200px" : 0;
+        let matchup;
+        if (hero[0] === undefined) {
+            matchup = null;
+        } else {
+            matchup = matchupData.matchup[hero[0].id] === undefined ? null : matchupData.matchup[hero[0].id];
+            if (matchup !== null)
+                matchup = matchup.map((x, index) => {
+                    return {...x, name: heroes[index].name, src: heroes[index].iconurl}
+                })
+        }
+
         return <div style={{display: "flex"}}>
             <div style={{height: "100vh", minWidth: listWidth}}>
                 <SimpleList
@@ -67,7 +83,12 @@ class HeroContainer extends Component {
                                 fontSize: "1.5em"
                             }}>
                                 Герой не найден. Попробуйте воспользоваться списком слева для выбора героя
-                            </div> : <HeroDataView hero={hero[0]}/>
+                            </div> : <HeroDataView
+                                hero={hero[0]}
+                                matchup={matchup}
+                                onLoadMatchup={this.handleMatchupLoad}
+                                loadingMatchup={matchupData.loading}
+                            />
                         }
                     </div>
             }
@@ -81,14 +102,16 @@ function mapStateToProps(state) {
     return {
         dictionary: state.dictionary,
         heroes,
-        loading: state.heroes.loading
+        loading: state.heroes.loading,
+        matchupData: state.matchup,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         heroActions: bindActionCreators(heroActions, dispatch),
-        dictionaryActions: bindActionCreators(dictionaryActions, dispatch)
+        dictionaryActions: bindActionCreators(dictionaryActions, dispatch),
+        matchupActions: bindActionCreators(matchupActions, dispatch)
     }
 }
 

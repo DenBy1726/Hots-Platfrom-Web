@@ -131,3 +131,62 @@ html body div#app div div div.ant-layout.ant-layout-has-sider {
 .ant-popover-title, .ant-popover-inner-content{
     color: rgba(240, 232, 232, 0.88) !important;
 }
+
+.price-gold::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    background: url("/gold.png");
+    margin-right: 10px;
+    margin-bottom: 4px;
+}
+
+.price-gems::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    background: url("/gem.png");
+    margin-right: 10px;
+    margin-bottom: 4px;
+}
+
+.price-gold, .price-gems {
+    font-size: 16px;
+}
+
+.ant-switch-checked::after {
+    background-color: rgba(240, 232, 232, 0.88) !important;
+}
+
+.ant-tabs-nav {
+    color: rgba(240, 232, 232, 0.88) !important;
+}
+
+.ant-tabs-nav .ant-tabs-tab:hover{
+    color: rgba(69, 56, 255,0.5);
+}
+
+.ant-tabs{
+    color: rgba(240, 232, 232, 0.88) !important;
+}
+
+.ant-table-body{
+    color: rgba(240, 232, 232, 0.88) !important;
+}
+
+.ant-table-thead > tr > th{
+    background: transparent !important;
+    color: rgb(24, 144, 255) !important;
+}
+
+.ant-table-tbody > tr:hover > td{
+    background-color: rgba(69, 56, 255,0.5)!important;
+}
+
+.ant-tabs-bar {
+    margin: 0;
+}

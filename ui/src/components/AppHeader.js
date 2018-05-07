@@ -15,7 +15,7 @@ export default class AppHeader extends Component {
     render() {
         const {
             userName, userImage, titleImage, isAuthenticated,
-            onTitleClick, onLogoutClick,menuVisible,onHeaderMenuClick
+            onTitleClick, onLogoutClick,menuVisible,onHeaderMenuClick,liteMode,liteModeChanged
         } = this.props;
         const detailsStyle = {margin: "0px 20px 0px auto", display: "flex", alignItems: "center"};
         return <div>
@@ -51,6 +51,8 @@ export default class AppHeader extends Component {
                 titleWidth="180px"
                 userName={userName}
                 userImage={userImage}
+                liteMode={liteMode}
+                liteModeChanged={liteModeChanged}
             />
         </div>
     }
@@ -62,7 +64,9 @@ AppHeader.propTypes = {
     titleImage: propTypes.string.isRequired,
     isAuthentificated: propTypes.bool.isRequired,
     onMenuClick: propTypes.func.isRequired,
-    onTitleClick: propTypes.func.isRequired
+    onTitleClick: propTypes.func.isRequired,
+    liteMode: propTypes.bool.isRequired,
+    liteModeChanged: propTypes.func.isRequired,
 };
 
 AppHeader.defaultProps = {

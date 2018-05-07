@@ -24,7 +24,7 @@ export default class SimpleList extends Component {
                     maxHeight: "100vh"
                 }}
                 size="small"
-                dataSource={data.filter(x=>x.name.includes(filter))}
+                dataSource={data.filter(x=>x.name.toUpperCase().includes(filter.toUpperCase()))}
                 renderItem={item => (
                     <List.Item className="simpleList" onClick={()=>onPick(item)}>
                         <div style={{color: "rgba(255, 247, 247, 0.88)"}}>

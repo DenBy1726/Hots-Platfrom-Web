@@ -5,9 +5,11 @@ import {combineReducers} from 'redux';
 import authority from "./authorityReducer"
 import heroes from "./heroReducer"
 import dictionary from "./dictionaryReducer"
+import settings from  "./settingsReducer"
+import matchup from  "./matchupReducer"
 
 const appReducer = combineReducers({
-    authority,heroes,dictionary
+    authority,heroes,dictionary,settings,matchup
 });
 
 export default (state, action) => {

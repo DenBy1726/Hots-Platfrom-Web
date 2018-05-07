@@ -2,7 +2,7 @@
  * Created by Denis on 29.04.2018.
  */
 import React, {Component} from "react"
-import {Button, Icon} from "antd";
+import {Button, Checkbox, Icon, Switch} from "antd";
 import LoginDetails from "./LoginDetails";
 import UserDetails from "./UserDetails";
 import propTypes from "prop-types"
@@ -14,7 +14,7 @@ export default class HeaderPanel extends Component {
             detailsStyle, headerPanelStyle, menuButtonStyle, menuIconStyle,
             menuIconFold, menuIconUnFold, titleContainerStyle, titleStyle,
             titleWidth, titleHeight, logoutButtonStyle, logoutOnClick, logoutText,
-            menuVisible
+            menuVisible, liteMode, liteModeChanged
         } = this.props;
         return <div
             style={headerPanelStyle}
@@ -26,20 +26,29 @@ export default class HeaderPanel extends Component {
             <div style={titleContainerStyle} onClick={onTitleClick}>
                 <img width={titleWidth} height={titleHeight} style={titleStyle} src={titleImage}/>
             </div>
-            {
-                isAuthenticated
-                    ?
-                    <div style={detailsStyle}>
-                        <UserDetails name={userName} avatar={userImage}/>
-                        <button className={logoutButtonStyle} onClick={logoutOnClick}>
-                            {logoutText}
-                        </button>
-                    </div>
-                    :
-                    <div style={detailsStyle}>
-                        <LoginDetails/>
-                    </div>
-            }
+            <div style={detailsStyle}>
+                <Switch
+                    style={{marginRight: "10px"}}
+                    checkedChildren="hard"
+                    unCheckedChildren="lite"
+                    checked={liteMode}
+                    onChange={() => liteModeChanged(!liteMode)}
+                />
+                {
+                    isAuthenticated
+                        ?
+                        <div>
+                            <UserDetails name={userName} avatar={userImage}/>
+                            <button className={logoutButtonStyle} onClick={logoutOnClick}>
+                                {logoutText}
+                            </button>
+                        </div>
+                        :
+                        <div>
+                            <LoginDetails/>
+                        </div>
+                }
+            </div>
         </div>
     }
 }
@@ -65,6 +74,8 @@ HeaderPanel.propTypes = {
     titleWidth: propTypes.string.isRequired,
     userImage: propTypes.string,
     userName: propTypes.string.isRequired,
+    liteMode: propTypes.bool.isRequired,
+    liteModeChanged: propTypes.func.isRequired,
 };
 
 HeaderPanel.defaultProps = {
@@ -73,16 +84,13 @@ HeaderPanel.defaultProps = {
         display: "flex",
         alignItems: "center"
     },
-    headerPanelStyle: {
-    },
+    headerPanelStyle: {},
     isAuthenticated: false,
     logoutOnClick: () => {
     },
     logoutText: "Logout",
-    menuButtonStyle: {
-    },
-    menuIconStyle: {
-    },
+    menuButtonStyle: {},
+    menuIconStyle: {},
     menuIconFold: 'menu-fold',
     menuIconUnfold: 'menu-unfold',
     menuVisible: false,
