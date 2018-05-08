@@ -3,6 +3,7 @@
  */
 import React, {Component} from "react"
 import Field from "../Common/Field";
+import DoubleField from "../FieldTemplate/DoubleField";
 
 export default class StatPanel extends Component {
     render() {
@@ -10,7 +11,7 @@ export default class StatPanel extends Component {
         return <div style={{display: "flex", flexWrap: "wrap", fontSize: "1.1em"}}>
             <div style={{marginRight: "5%"}}>
                 <Field label="Здоровье:" value={hero.health}/>
-                <Field label="Регенерация здоровья:" value={hero.healthregen}/>
+                <DoubleField label="Регенерация здоровья:" value={hero.healthregen} round={2}/>
                 {
                     hero.resourcetype.id > 1
                         ? <Field label={`Количество ${hero.resourcetype.name}:`} value={hero.resource}/>
@@ -26,7 +27,7 @@ export default class StatPanel extends Component {
                 <Field label="Скорость атаки:" value={hero.attackspeed}/>
                 {
                     hero.melee === true ?
-                        <Field label={`Ближний бой ${hero.resourcetype.name}:`} value=""/>
+                        <Field label={`Ближний бой`} value=""/>
                         :
                         <Field label="Дальность атаки" value={hero.attackrange}/>
                 }

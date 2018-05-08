@@ -12,7 +12,7 @@ const initialState = {
     loading: false,
 };
 
-export default function settingsReducer(state = {...initialState}, action) {
+export default function matchupReducer(state = {...initialState}, action) {
     switch (action.type) {
         case LOAD_START_MATCHUP_ONEHERO:
             return {...state, loading: true};

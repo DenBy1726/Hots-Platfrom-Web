@@ -7,7 +7,11 @@ import {Avatar, List} from "antd";
 
 export default class HeroList extends Component {
     render() {
-        const {grid, data, pickedStyle, defaultStyle,loading} = this.props;
+        const {
+            grid, data, pickedStyle, defaultStyle, loading,
+            imageStyleName, overlayStyleName, useOverlay,
+            overlayText, onOverlayClick, containerStyleName
+        } = this.props;
         return <List
             grid={grid}
             loading={loading}
@@ -18,11 +22,19 @@ export default class HeroList extends Component {
                     ? pickedStyle
                     : defaultStyle;
                 return <List.Item>
-                    <Avatar
-                        style={style}
-                        onClick={() => this.props.onClick(item)}
-                        size="large"
-                        src={item.iconurl}/>
+                    <div className={containerStyleName}>
+                        <Avatar
+                            className={imageStyleName}
+                            style={style}
+                            onClick={() => this.props.onClick(item)}
+                            size="large"
+                            src={item.iconurl}/>
+                        { useOverlay === true ?
+                            <div className={overlayStyleName} onClick={() => onOverlayClick(item)}>
+                                {overlayText}
+                            </div> : null
+                        }
+                    </div>
                 </List.Item>
             }}
         />
@@ -34,6 +46,9 @@ HeroList.propTypes = {
     grid: propTypes.object.isRequired,
     onClick: propTypes.func.isRequired,
     loading: propTypes.bool.isRequired,
+    overlayStyleName: propTypes.string.isRequired,
+    imageStyleName: propTypes.string.isRequired,
+    useOverlay: propTypes.bool.isRequired,
 
     pickedStyle: propTypes.object.isRequired,
     defaultStyle: propTypes.object.isRequired,
@@ -52,5 +67,7 @@ HeroList.defaultProps = {
         borderRadius: "20px",
         border: "2px solid #7c7ff5",
         boxShadow: "0px 0px 5px rgb(69, 56, 255)",
-    }
+    },
+    useOverlay: false,
+    overlayText: 'Перейти'
 };

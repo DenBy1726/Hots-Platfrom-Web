@@ -7,9 +7,10 @@ import heroes from "./heroReducer"
 import dictionary from "./dictionaryReducer"
 import settings from  "./settingsReducer"
 import matchup from  "./matchupReducer"
+import statistic from "./statisticReducer"
 
 const appReducer = combineReducers({
-    authority,heroes,dictionary,settings,matchup
+    authority,heroes,dictionary,settings,matchup,statistic
 });
 
 export default (state, action) => {

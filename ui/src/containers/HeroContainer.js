@@ -11,6 +11,7 @@ import {withRouter} from "react-router-dom";
 import * as heroActions from "../action/heroAction";
 import * as dictionaryActions from "../action/dictionaryAction"
 import * as matchupActions from "../action/matchupAction";
+import * as statisticActions from "../action/statisticActions";
 import joinAllHeroesData from "../selectors/joinAllHeroesData"
 import SimpleList from "../components/Common/SimpleList";
 import HeroDataView from "../components/HeroDataView";
@@ -39,15 +40,21 @@ class HeroContainer extends Component {
         this.props.matchupActions.getHeroMatchup(id);
     };
 
+    handleStatisticLoad = id =>{
+        this.props.statisticActions.getHeroStatistic(id);
+    };
+
     render() {
         const heroName = this.props.match.params.name;
-        const {heroes, loading, matchupData} = this.props;
+        const {heroes, loading, matchupData,statisticData} = this.props;
         const hero = heroes.filter(x => x.name === heroName);
         const listWidth = this.state.heroListVisible ? "200px" : 0;
-        let matchup;
+        let matchup,statistic;
         if (hero[0] === undefined) {
             matchup = null;
+            statistic = null;
         } else {
+            statistic = statisticData.statistic[hero[0].id] === undefined ? null : statisticData.statistic[hero[0].id];
             matchup = matchupData.matchup[hero[0].id] === undefined ? null : matchupData.matchup[hero[0].id];
             if (matchup !== null)
                 matchup = matchup.map((x, index) => {
@@ -85,9 +92,15 @@ class HeroContainer extends Component {
                                 Герой не найден. Попробуйте воспользоваться списком слева для выбора героя
                             </div> : <HeroDataView
                                 hero={hero[0]}
+                                heroes={heroes}
                                 matchup={matchup}
                                 onLoadMatchup={this.handleMatchupLoad}
                                 loadingMatchup={matchupData.loading}
+                                statistic={statistic}
+                                onLoadStatistic={this.handleStatisticLoad}
+                                loadingStatistic={statisticData.loading}
+                                onOverlayClick={this.handlePick}
+
                             />
                         }
                     </div>
@@ -104,6 +117,7 @@ function mapStateToProps(state) {
         heroes,
         loading: state.heroes.loading,
         matchupData: state.matchup,
+        statisticData: state.statistic
     }
 }
 
@@ -111,7 +125,8 @@ function mapDispatchToProps(dispatch) {
     return {
         heroActions: bindActionCreators(heroActions, dispatch),
         dictionaryActions: bindActionCreators(dictionaryActions, dispatch),
-        matchupActions: bindActionCreators(matchupActions, dispatch)
+        matchupActions: bindActionCreators(matchupActions, dispatch),
+        statisticActions: bindActionCreators(statisticActions, dispatch)
     }
 }
 
