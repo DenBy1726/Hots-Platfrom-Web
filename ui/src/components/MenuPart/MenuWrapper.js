@@ -82,7 +82,7 @@ class MenuWrapper extends Component {
                 collapsed={this.state.collapsed}
                 toggleCollapsed={this.toggleCollapsed}
                 menuItemStyle={{background: "rgba(0,0,0,0)"}}
-                menuContainerStyle={{width: 0, minHeight: '100vh'}}
+                menuContainerStyle={{width: 0, height: '100%', minHeight: "calc(-86px + 100vh)"}}
                 siderClass="appMenu"
                 selectedItem={selected}
                 onClick={(item) => {

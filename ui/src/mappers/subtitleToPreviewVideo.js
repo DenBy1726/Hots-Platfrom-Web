@@ -15,7 +15,7 @@ const subtitleToPreviewVideo = (name,title) =>{
         heroCanonicName = 'greymane_' + heroCanonicName;
     if(name === 'Valeera')
         heroCanonicName = 'standard_' + heroCanonicName;
-    return `https://psionic-storm.com/wp-content/themes/psionicstorm/videos/skins/${heroCanonicName}.webm`;
+    return `https://psionic-storm.com/media/videos/skins/${heroCanonicName}.webm`;
 };
 
 export default subtitleToPreviewVideo;

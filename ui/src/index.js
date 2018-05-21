@@ -9,16 +9,16 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux'
 import App from "./containers/App"
 import thunk from 'redux-thunk';
-import {BrowserRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 
 const rootElement = document.getElementById('app');
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
             <App/>
-        </BrowserRouter>
+        </HashRouter>
     </Provider>,
     rootElement
 );

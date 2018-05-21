@@ -82,7 +82,7 @@ class HeroContainer extends Component {
                 }}>
                     Пожалуйста, выберите героя из списка слева для просмотра деталей
                 </div> :
-                    <div style={{width: "100%"}}>
+                    <div style={{width: "100%" , height: "calc(100vh - 68px)", overflow: "auto"}}>
                         {
                             hero.length === 0 ? <div style={{
                                 display: "flex", justifyContent: "center",

@@ -21,7 +21,7 @@ export default class SimpleList extends Component {
                 loading={loading}
                 style={{
                     overflow: "auto",
-                    maxHeight: "100vh"
+                    maxHeight: "calc(100vh - 96px)"
                 }}
                 size="small"
                 dataSource={data.filter(x=>x.name.toUpperCase().includes(filter.toUpperCase()))}
