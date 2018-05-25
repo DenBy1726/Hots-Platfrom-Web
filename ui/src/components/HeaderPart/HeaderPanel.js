@@ -37,9 +37,9 @@ export default class HeaderPanel extends Component {
                 {
                     isAuthenticated
                         ?
-                        <div>
+                        <div style={{display:"flex"}}>
                             <UserDetails name={userName} avatar={userImage}/>
-                            <button className={logoutButtonStyle} onClick={logoutOnClick}>
+                            <button style={{height: "30%", alignSelf: "center"}} className={logoutButtonStyle} onClick={logoutOnClick}>
                                 {logoutText}
                             </button>
                         </div>

@@ -8,13 +8,13 @@ import * as ROUTES from "../constants/Routes";
 
 class WelcomeContainer extends Component {
     render() {
-        return <div style={{display: "flex"}}>
+        return <div style={{display: "flex", height: "100vh", overflow: "auto"}}>
             <div style={{
-                margin: "20px", width: "54%",
+                margin: "0 20px 20px 20px", width: "54%",
                 maxWidth: "560px", minWidth: "420px", minHeight: "336px"
             }}>
                 <h1
-                    style={{margin: "8px 0 28px", color: "rgba(255, 247, 247, 0.88)", fontSize: "38px"}}
+                    style={{margin: "0 0 28px", color: "rgba(255, 247, 247, 0.88)", fontSize: "38px"}}
                 >Heroes of the Storm Forecaster</h1>
                 <span style={{fontSize: "20px", lineHeight: "40px"}}>
                Система с открытым исходным кодом и API для сбора информации,
@@ -54,7 +54,7 @@ class WelcomeContainer extends Component {
                         Начать работу
                     </button>
                     <button className="hotsButton" style={{margin: "10px"}}
-                            onClick={() => this.props.history.push(ROUTES.API)}>
+                            onClick={()=>window.location=`${ROUTES.API}`}>
                         Для разработчиков
                     </button>
                 </div>

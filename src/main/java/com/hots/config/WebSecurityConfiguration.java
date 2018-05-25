@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -66,8 +65,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/", "/login**", "/webjars/**")
                     .permitAll()
 
+
                     .antMatchers("/api/v1/private/**")
-                    .hasAuthority("ROLE_USER")
+                    .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+
+                    .antMatchers("/swagger-ui.html")
+                    .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
 
                     .antMatchers("/resources/**", "/**")
                     .permitAll()
@@ -78,6 +81,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/auth/logout")
                 .logoutSuccessUrl("/");
+
     }
 
     private Filter ssoFilter() {

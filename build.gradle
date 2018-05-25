@@ -54,8 +54,8 @@ task buildFrontend(type: NpmTask, dependsOn: 'installNpm') {
 }
 
 task copyCerts(type: Copy) {
-    from file("./keystore.p12")
-    into file("build")
+    from file('./keystore.p12')
+    into 'build'
 }
 
 build.dependsOn('copyCerts')

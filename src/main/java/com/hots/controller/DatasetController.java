@@ -6,6 +6,7 @@ import com.hots.service.DatasetService;
 import com.hots.service.NetworkService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,6 +34,9 @@ public class DatasetController {
     @Autowired
     DatasetService datasetService;
 
+    @Value("${HOTS_FORECASTER_STORAGE}")
+    private String storagePath;
+
     @GetMapping(value="/{id}",produces="application/zip")
     ResponseEntity<InputStreamResource> findById(@PathVariable Long id, HttpServletResponse response)
             throws Exception {
@@ -41,7 +45,7 @@ public class DatasetController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         else {
 
-            byte[] file = Files.readAllBytes(Paths.get("./storage/", set.getFilename()));
+            byte[] file = Files.readAllBytes(Paths.get(storagePath, set.getFilename()));
             response.addHeader("Content-Disposition",
                     "attachment; filename=\"" + set.getFilename() + "\"");
             return ResponseEntity

@@ -10,9 +10,11 @@ import {Provider} from 'react-redux'
 import App from "./containers/App"
 import thunk from 'redux-thunk';
 import {HashRouter} from "react-router-dom";
+import axiosInterceptors from "./util/interceptors"
 
 const rootElement = document.getElementById('app');
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+axiosInterceptors();
 
 ReactDOM.render(
     <Provider store={store}>

@@ -3,7 +3,7 @@
  */
 import React, {Component} from "react";
 import HeaderContainer from "./HeaderContainer";
-import {Route, Switch, withRouter} from "react-router-dom";
+import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import WelcomeContainer from "./WelcomeContainer";
 import * as ROUTES from "../constants/Routes";
 import MainContainer from "./MainContainer";
@@ -24,6 +24,9 @@ class App extends Component {
         return <Switch>
             <Route path={ROUTES.MAIN} component={MainRouter}/>
             <Route path={ROUTES.WELCOME} exact component={WelcomeContainer}/>
+            <Redirect exact from={`${ROUTES.FACEBOOK_REDIRECT}`} to='/Main'/>
+            <Route exact path={`${ROUTES.DENIED}`}>
+            </Route>
         </Switch>
     }
 }

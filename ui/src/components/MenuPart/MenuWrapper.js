@@ -61,12 +61,12 @@ class MenuWrapper extends Component {
                             label: "Загрузки",
                             icon: "download",
                             id: ROUTES.DOWNLOAD,
-                            disabled: {isAuthenticated},
+                            disabled: !isAuthenticated,
                         },
                         {
                             label: "Для разработчиков",
                             icon: "fork",
-                            disabled: {isAuthenticated},
+                            disabled: !isAuthenticated,
                             children: [
                                 {
                                     label: "API",
@@ -82,11 +82,14 @@ class MenuWrapper extends Component {
                 collapsed={this.state.collapsed}
                 toggleCollapsed={this.toggleCollapsed}
                 menuItemStyle={{background: "rgba(0,0,0,0)"}}
-                menuContainerStyle={{width: 0, height: '100%', minHeight: "calc(-86px + 100vh)"}}
+                menuContainerStyle={{width: 0, height: '100%', minHeight: "calc(-68px + 100vh)"}}
                 siderClass="appMenu"
                 selectedItem={selected}
                 onClick={(item) => {
-                    this.props.history.push(item.key);
+                    if(item.key === ROUTES.API)
+                        window.location = item.key;
+                    else
+                        this.props.history.push(item.key);
                 }}
             />
             : null;

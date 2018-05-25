@@ -38,8 +38,10 @@ How to configure oauth2:
           userInfoUri: https://www.googleapis.com/userinfo/v2/me
           preferTokenInfo: false
 ````
-How to build and run server
+How to build and run server (if you have Russian Windows, print ````chcp 1251```` before)
 ````
 gradle build
 java -jar build\libs\hots_server-1.0.0.jar
 ````
+How to configure file storage:
+SET system envieronment variable HOTS_FORECASTER_STORAGE as path to root folder of storage

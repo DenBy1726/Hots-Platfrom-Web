@@ -11,7 +11,7 @@ export default class SimpleList extends Component {
             onVisibilityChange, filter, onFilterChanged,loading, onPick} = this.props;
         return <div>
             <div style={{display: "flex"}}>
-                {visible && <Input onChange={onFilterChanged} className="hotsInput" size="small" placeholder="Поиск..."/>}
+                {visible && <Input style={{width: "83%"}} onChange={onFilterChanged} className="hotsInput" size="small" placeholder="Поиск..."/>}
                 <Button style={menuButtonStyle} onClick={onVisibilityChange}>
                     <Icon style={menuIconStyle}
                           type={visible ? menuIconFold : menuIconUnfold}/>

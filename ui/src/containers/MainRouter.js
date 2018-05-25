@@ -3,7 +3,7 @@
  */
 import React, {Component} from "react";
 import HeaderContainer from "./HeaderContainer";
-import {Route, Switch, withRouter} from "react-router-dom";
+import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import * as ROUTES from "../constants/Routes";
 import MainContainer from "./MainContainer";
 import {bindActionCreators, compose} from "redux";
@@ -12,13 +12,17 @@ import * as dictionaryActions from "../action/dictionaryAction"
 import {connect} from "react-redux";
 import MenuWrapper from "../components/MenuPart/MenuWrapper";
 import HeroContainer from "./HeroContainer";
+import ForecastContainer from "./ForecastContainer";
+import MapStatisticContainer from "./MapStatisticContainer";
+import HeroStatisticContainer from "./HeroStatisticContainer";
+import DownloadContainer from "./DownloadContainer";
 class MainRouter extends Component {
 
     state = {
         menuVisible: false,
     };
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.heroActions.getAllHeroesData();
         this.props.dictionaryActions.getDictionary();
     }
@@ -29,7 +33,7 @@ class MainRouter extends Component {
     };
 
     render() {
-        const isAuthenticated = this.props.authority.role.filter(x => x !== "ANONYMOUS").length !== 0;
+        const isAuthenticated = this.props.authority.role.filter(x => x !== "ANONYMOUS").length > 0;
         return <div style={{display: "flex", flexDirection: "column"}}>
             <HeaderContainer
                 onHeaderMenuClick={this.handleMenuClick}
@@ -38,17 +42,26 @@ class MainRouter extends Component {
                 isAuthenticated={isAuthenticated}
             />
             <div style={{display: "flex", flexDirection: "row"}}>
-                <MenuWrapper path={this.props.history.pathname} visible={this.state.menuVisible} isAuthenticated={isAuthenticated}/>
+                <MenuWrapper path={this.props.history.pathname} visible={this.state.menuVisible}
+                             isAuthenticated={isAuthenticated}/>
                 <Switch>
                     <Route exact path={ROUTES.MAIN}>
-                        <div style={{margin: "10px auto"}}>
-                            <MainContainer/>
-                        </div>
+                        <MainContainer/>
                     </Route>
                     <Route exact path={`${ROUTES.HEROES}/:name?`}>
-                        <div style={{width:"100%"}}>
-                            <HeroContainer/>
-                        </div>
+                        <HeroContainer/>
+                    </Route>
+                    <Route exact path={`${ROUTES.FORECAST}`}>
+                        <ForecastContainer/>
+                    </Route>
+                    <Route exact path={`${ROUTES.MAPSTATISTIC}`}>
+                        <MapStatisticContainer/>
+                    </Route>
+                    <Route exact path={`${ROUTES.HEROSTATISTIC}`}>
+                        <HeroStatisticContainer/>
+                    </Route>
+                    <Route exact path={`${ROUTES.DOWNLOAD}`}>
+                        <DownloadContainer/>
                     </Route>
                 </Switch>
             </div>
@@ -64,8 +77,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        heroActions: bindActionCreators(heroActions,dispatch),
-        dictionaryActions: bindActionCreators(dictionaryActions,dispatch)
+        heroActions: bindActionCreators(heroActions, dispatch),
+        dictionaryActions: bindActionCreators(dictionaryActions, dispatch)
     }
 };
 

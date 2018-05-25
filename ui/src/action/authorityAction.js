@@ -2,7 +2,6 @@
  * Created by Denis on 26.04.2018.
  */
 import axios from "axios";
-import globalHistory from "../util/browserHistory";
 import {LOAD_START_AUTH, LOAD_END_AUTH, LOAD_ERROR_AUTH} from "../constants/ActionTypes";
 
 export const getUser = () => {
@@ -11,11 +10,7 @@ export const getUser = () => {
         axios({
             method: "get",
             url: "/auth/user",
-            withCredentials: true,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials":"true"
-            },
+            withCredentials: true
         }).then(
             result => {
                 dispatch(loadEndAction(result.data));

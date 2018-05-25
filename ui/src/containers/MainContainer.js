@@ -32,10 +32,11 @@ class MainContainer extends Component {
     };
 
     render() {
-        const {heroes, dictionary, loading,liteMode} = this.props;
+        const {heroes, dictionary, loading, liteMode} = this.props;
         const {picked} = this.state;
-        return <FetchingWrapper style={{maxWidth: "814px"}} loading={loading} spinning={true}
-                                blur="2px">
+        return <div style={{margin: "10px auto"}}>
+            <FetchingWrapper style={{maxWidth: "814px"}} loading={loading} spinning={true}
+                             blur="2px">
                 <HeroListView
                     dictionary={{
                         franchise: dictionary.franchise,
@@ -52,7 +53,8 @@ class MainContainer extends Component {
                     onSubmitClick={this.handleSubmit}
                     mode={liteMode ? "video" : "fetched"}
                 />
-        </FetchingWrapper>
+            </FetchingWrapper>
+        </div>
     }
 }
 

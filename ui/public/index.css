@@ -1,6 +1,6 @@
 body {
     color: rgba(255, 247, 247, 0.88) !important;
-    background: #0d0119 url("http://i.imgur.com/OcFygJu.jpg") center 0 no-repeat !important;
+    background: #0d0119 url("http://i.imgur.com/OcFygJu.jpg") left 0 no-repeat !important;
     max-width: 100vw;
     overflow: hidden;
 }
@@ -52,7 +52,7 @@ body {
     background: rgba(26, 21, 55, 0.5) !important;
 }
 
-.ant-layout-sider-trigger, .ant-menu-sub {
+.ant-layout-sider-trigger {
     background: rgba(26, 21, 55, 0) !important;
 }
 
@@ -116,20 +116,20 @@ html body div#app div div div.ant-layout.ant-layout-has-sider {
     margin-right: 0 !important;
 }
 
-.simpleList:hover{
+.simpleList:hover {
     box-shadow: 0 0 15px 2px rgb(69, 56, 255);
-    background-color: rgba(69, 56, 255,0.5);
+    background-color: rgba(69, 56, 255, 0.5);
 }
 
-.simpleList{
-    cursor:pointer
+.simpleList {
+    cursor: pointer
 }
 
 .ant-popover-inner {
-    background-color: rgba(0,0,0,0.65) !important;
+    background-color: rgba(0, 0, 0, 0.65) !important;
 }
 
-.ant-popover-title, .ant-popover-inner-content{
+.ant-popover-title, .ant-popover-inner-content {
     color: rgba(240, 232, 232, 0.88) !important;
 }
 
@@ -167,25 +167,25 @@ html body div#app div div div.ant-layout.ant-layout-has-sider {
     color: rgba(240, 232, 232, 0.88) !important;
 }
 
-.ant-tabs-nav .ant-tabs-tab:hover{
-    color: rgba(69, 56, 255,0.5);
+.ant-tabs-nav .ant-tabs-tab:hover {
+    color: rgba(69, 56, 255, 0.5);
 }
 
-.ant-tabs{
+.ant-tabs {
     color: rgba(240, 232, 232, 0.88) !important;
 }
 
-.ant-table-body{
+.ant-table-body {
     color: rgba(240, 232, 232, 0.88) !important;
 }
 
-.ant-table-thead > tr > th{
+.ant-table-thead > tr > th {
     background: transparent !important;
     color: rgb(24, 144, 255) !important;
 }
 
-.ant-table-tbody > tr:hover > td{
-    background-color: rgba(69, 56, 255,0.5)!important;
+.ant-table-tbody > tr:hover > td {
+    background-color: rgba(69, 56, 255, 0.5) !important;
 }
 
 .ant-tabs-bar {
@@ -194,7 +194,7 @@ html body div#app div div div.ant-layout.ant-layout-has-sider {
 
 .overlay {
     position: absolute;
-    background: linear-gradient(to bottom, transparent 70%,rgba(0,0,0,0.5) 70%,rgba(0,0,0,0.5) 100%);
+    background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.5) 100%);
     color: #f1f1f1;
     transition: .5s ease;
     opacity: 0;
@@ -215,4 +215,49 @@ html body div#app div div div.ant-layout.ant-layout-has-sider {
 
 .similarImage:hover .overlay {
     opacity: 1;
+}
+
+.ant-select-selection {
+    color: rgba(240, 232, 232, 0.88) !important;
+    background-color: transparent !important;
+    height: 40px !important;
+    box-shadow: 0 0 15px 2px rgb(69, 56, 255);
+    border: 2px solid rgba(69, 56, 255, 0.5) !important;
+}
+
+.ant-select-dropdown-menu-item:hover {
+    box-shadow: 0 0 15px 2px rgb(69, 56, 255);
+    background-color: rgba(69, 56, 255, 0.5) !important;
+}
+
+.ant-select-arrow {
+    color: rgba(240, 232, 232, 0.88) !important;
+}
+
+.ant-select-dropdown-menu-item-selected, .ant-select-dropdown-menu-item-selected:hover {
+    box-shadow: 0 0 15px 2px rgb(69, 56, 255);
+    background-color: rgba(69, 56, 255, 0.5) !important;
+}
+
+.ant-collapse, .ant-collapse-content, .ant-collapse-content-active {
+    background: rgba(26, 21, 55, 0.5) !important;
+}
+
+.ant-collapse * {
+    color: rgba(240, 232, 232, 0.88) !important;
+}
+
+.ant-collapse * button {
+    margin: 3px;
+    padding: 6px 12px !important;
+    border: 1px solid #9393f5;
+    color: #fff !important;
+    font-size: .9em;
+    font-weight: 300;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
+    box-shadow: 0 0 11px #1616cf;
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #412374, rgba(19, 4, 41, 0.9), #412374);
+    border-radius: 3px !important;
 }

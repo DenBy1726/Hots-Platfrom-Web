@@ -10,7 +10,7 @@ export default class Filter extends Component {
         const {filter} = this.props;
         return <div style={{display: "flex", flexDirection: "row"}}>
             {filter.map(item => {
-                return <div style={{flexGrow: 1}}>
+                return <div style={{flexGrow: 1, textAlign: "center"}}>
                     {item.title}
                     <List
                         grid={{column: 8}}

@@ -20,11 +20,11 @@ export default class HeroListView extends Component {
     };
 
     render() {
-        const {grid, data, onClick, loading, title, subtitle,onSubmitClick,mode} = this.props;
+        const {grid, data, onClick, loading, title, subtitle,onSubmitClick,mode,enablePortrait} = this.props;
         let halfWayThough = Math.floor(data.length / 2);
         let arrayFirstHalf = data.slice(0, halfWayThough);
         let arraySecondHalf = data.slice(halfWayThough, data.length);
-        let halfStyles = this.state.portrait === "" ? null : {marginTop: "70px"};
+        let halfStyles = this.state.portrait !== "" && enablePortrait ? {marginTop: "70px"} : null;
         let srcUrl,type;
         switch (mode){
             case 'parsed':
@@ -48,7 +48,7 @@ export default class HeroListView extends Component {
                     grid={grid}
                     data={arrayFirstHalf}/>
             </div>
-            {this.state.portrait !== "" ?
+            {this.state.portrait !== "" && enablePortrait  ?
                 <PortraitPreview
                     onClick={onSubmitClick}
                     title={title}
@@ -67,7 +67,7 @@ export default class HeroListView extends Component {
     }
 }
 
-HeroList.propTypes = {
+HeroListView.propTypes = {
     data: propTypes.array.isRequired,
     grid: propTypes.object.isRequired,
     loading: propTypes.object.isRequired,
@@ -77,4 +77,8 @@ HeroList.propTypes = {
     onSubmitClick: propTypes.func.isRequired,
     //parsed,fetched,video
     mode: propTypes.string.isRequired,
+};
+
+HeroListView.defaultProps = {
+    enablePortrait: true
 };

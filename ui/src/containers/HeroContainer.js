@@ -62,7 +62,7 @@ class HeroContainer extends Component {
                 })
         }
 
-        return <div style={{display: "flex"}}>
+        return <div style={{display: "flex", width: "100%"}}>
             <div style={{height: "100vh", minWidth: listWidth}}>
                 <SimpleList
                     data={heroes}
