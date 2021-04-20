@@ -1,3 +1,26 @@
+create sequence IF NOT EXISTS dataset_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS difficulty_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS franchise_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS gamemode_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS gaussian_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS gaussianprobabilities_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS hero_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS heroclusters_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS herodetails_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS herogroup_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS herosubgroup_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS map_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS matchuptable_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS network_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS resourcetype_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS statistic_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS statisticheroes_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS statisticheroesavg_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS statisticheroesmax_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS statisticheroesmin_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS trainingmeta_id_seq minvalue 0 start with 0;
+create sequence IF NOT EXISTS trainingstate_id_seq minvalue 0 start with 0;
+
 CREATE TABLE dataset
 (
   filename VARCHAR(1000),
@@ -195,6 +218,16 @@ CREATE TABLE trainingstate
   validpercent DOUBLE PRECISION,
   id BIGINT DEFAULT nextval('trainingstate_id_seq'::regclass) PRIMARY KEY NOT NULL
 );
+
+CREATE TABLE HeroWebExtension
+(
+    imageurl VARCHAR(1000),
+    iconurl VARCHAR(1000),
+    portraiturl VARCHAR(1000),
+    detailsurl VARCHAR(1000),
+    id BIGINT DEFAULT nextval('trainingstate_id_seq'::regclass) PRIMARY KEY NOT NULL
+);
+
 ALTER TABLE gaussianprobabilities ADD FOREIGN KEY (gaussian_id) REFERENCES gaussian (id);
 ALTER TABLE hero ADD FOREIGN KEY (_group) REFERENCES herogroup (id);
 ALTER TABLE hero ADD FOREIGN KEY (subgroup) REFERENCES herosubgroup (id);

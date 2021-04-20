@@ -61,12 +61,12 @@ class MenuWrapper extends Component {
                             label: "Загрузки",
                             icon: "download",
                             id: ROUTES.DOWNLOAD,
-                            disabled: !isAuthenticated,
+                            // disabled: !isAuthenticated,
                         },
                         {
                             label: "Для разработчиков",
                             icon: "fork",
-                            disabled: !isAuthenticated,
+                            // disabled: !isAuthenticated,
                             children: [
                                 {
                                     label: "API",

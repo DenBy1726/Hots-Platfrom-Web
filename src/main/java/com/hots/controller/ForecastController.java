@@ -1,11 +1,8 @@
 package com.hots.controller;
 
-import com.hots.model.Hero;
 import com.hots.model.Network;
-import com.hots.model.TrainingMeta;
-import com.hots.service.HeroService;
+import com.hots.model.Pair;
 import com.hots.service.NeuralNetworkService;
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -2,9 +2,7 @@ How to setup https:
 1) Get a SSL certificate (for example self-signed)
 
 ````
-keytool -genkey -alias tomcat
-   -storetype PKCS12 -keyalg RSA -keysize 2048
-   -keystore keystore.p12 -validity 3650
+keytool -genkey -alias tomcat -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
 ````
 
 2) Edit Spring boot config

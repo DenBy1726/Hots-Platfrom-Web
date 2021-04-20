@@ -61,7 +61,8 @@ task copyCerts(type: Copy) {
 build.dependsOn('copyCerts')
 
 dependencies {
-    compileOnly('org.projectlombok:lombok:1.16.20')
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
     compile 'org.springframework.boot:spring-boot-starter-web:1.5.8.RELEASE'
     compile 'org.springframework.security.oauth:spring-security-oauth2:2.0.11.RELEASE'
